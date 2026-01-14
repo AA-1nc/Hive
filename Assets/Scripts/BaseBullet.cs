@@ -6,6 +6,7 @@ public class BaseBullet : MonoBehaviour
 {
     [SerializeField] private float speed = 10;
     [SerializeField] private float deletionTime = 3;
+    [SerializeField] private float expansion = 0;
 
     private void Start()
     {
@@ -15,5 +16,6 @@ public class BaseBullet : MonoBehaviour
     private void Update()
     {
         transform.Translate(transform.up * speed * Time.deltaTime, Space.World);
+        transform.localScale += new Vector3(expansion * Time.deltaTime, expansion * Time.deltaTime);
     }
 }

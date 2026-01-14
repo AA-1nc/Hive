@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -10,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveLerpSpeed = 10;
     [SerializeField] private float recoilRadius = 1.5f;
     [SerializeField] private float recoilLerpSpeed = 15;
+    [SerializeField] private GameObject sprite;
 
     private float currentSpeed = 0;
     private float currentRadius;
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Confined;
         shoot = GetComponent<Shoot>();
         currentRadius = movementRadius;
     }
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         HandleMovement();
         HandleShooting();
+        sprite.transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     private void HandleMovement()

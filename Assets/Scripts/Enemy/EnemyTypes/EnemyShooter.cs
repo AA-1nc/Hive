@@ -4,34 +4,28 @@ using UnityEngine;
 
 public class EnemyShooter : BaseEnemy
 {
-    [SerializeField] private LayerMask detectionMask;
     [SerializeField] private float detectionRange = 6;
+    [SerializeField] private Shoot[] turrets;
 
     private Transform target;
-    private Shoot shoot;
-
-    protected override void Awake()
-    {
-        shoot = GetComponent<Shoot>();
-        base.Awake();
-    }
 
     protected override void Update()
     {
-        base.Update();
-
         GetClosestObject();
 
         if (target != null)
         {
             RotateToTarget();
-            shoot.ShootBullet();
+            foreach (Shoot turret in turrets)
+                turret.ShootBullet();
         }
+        else
+            base.Update();
     }
 
     private void GetClosestObject()
     {
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, detectionRange, Vector2.up, 0, detectionMask);
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, detectionRange, Vector2.up, 0, playerMask);
 
         float closestDistance = detectionRange * detectionRange; // Squared to account for squared distance
         foreach (RaycastHit2D hit in hits)
@@ -48,14 +42,20 @@ public class EnemyShooter : BaseEnemy
             target = null;
     }
 
-    private float GetSquaredDistance(Vector3 pos1, Vector3 pos2)
-    {
-        return Mathf.Pow(pos1.x - pos2.x, 2) + Mathf.Pow(pos1.y - pos2.y, 2);
-    }
-
     private void RotateToTarget()
     {
         float angle = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle - 90);
+        smoothRotate.Rotate(Quaternion.Euler(0, 0, angle - 90));
+    }
+
+    public override void StartOrbiting(float newDetectionRange)
+    {
+        detectionRange = newDetectionRange;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
     }
 }

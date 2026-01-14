@@ -16,8 +16,8 @@ TagManager:
   - Tower
   - PlayerProjectile
   - EnemyProjectile
-  - 
-  - 
+  - HitableBug
+  - PlayerShip
   - 
   - 
   - 

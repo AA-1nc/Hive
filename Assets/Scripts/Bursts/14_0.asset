@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eec3dd94f9f2234fa24979492d93ce5, type: 3}
+  m_Name: 14_0
+  m_EditorClassIdentifier: 
+  arrangement: '554455
+
+    222222'
+  enemyPrefabs:
+  - {fileID: 0}
+  - {fileID: 851323578136195623, guid: 5cb6f91815a785e488e5f2d5ff76eefa, type: 3}
+  - {fileID: 851323578136195623, guid: b11bae64611b54743bebc9127d8d7ba5, type: 3}
+  - {fileID: 2243200727876648760, guid: ece0c6e61befd0d47ac87710da91c83a, type: 3}
+  - {fileID: 4531224864404358102, guid: 57abf0329d2bb404685d78288b6729b7, type: 3}
+  - {fileID: 851323578136195623, guid: d2bd516dfe14522439575df82525e524, type: 3}
+  rowSpacing: 2.8
+  columnAngleSpacing: 6.2
+  startDistance: 26
+  centerAngle: 0

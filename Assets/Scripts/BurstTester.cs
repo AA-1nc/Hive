@@ -11,6 +11,7 @@ public class BurstTester : MonoBehaviour
     private void Awake()
     {
         Time.timeScale = 0;
+        if (testBurst == null) Destroy(gameObject);
     }
 
     private void Update()
