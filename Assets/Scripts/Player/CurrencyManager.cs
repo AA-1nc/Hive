@@ -5,19 +5,21 @@ using UnityEngine;
 
 public class CurrencyManager : MonoBehaviour
 {
-    public static CurrencyManager currencyManager;
+    public static CurrencyManager Instance;
 
     [SerializeField] private int currency;
     [SerializeField] private TextMeshProUGUI currencyDisplay;
 
+    [SerializeField]private int earningMultiplier = 1;
+
     private void Awake()
     {
-        currencyManager = this;
+        Instance = this;
     }
 
     private void Start()
     {
-        Shop.shop.UpdateItems(currency);
+        ModifyCurrency(0);
     }
 
     public int GetCurrency() => currency;
@@ -25,7 +27,17 @@ public class CurrencyManager : MonoBehaviour
     public void ModifyCurrency(int amt)
     {
         currency += amt;
-        Shop.shop.UpdateItems(currency);
+        Shop.Instance.UpdateItems(currency);
         currencyDisplay.text = "Resin: " + currency;
+    }
+
+    public void DefeatEnemy(int amt)
+    {
+        ModifyCurrency(amt * earningMultiplier);
+    }
+
+    public void ChangeEarningMult(float percent)
+    {
+        earningMultiplier = (int)(earningMultiplier * percent);
     }
 }

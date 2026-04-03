@@ -18,9 +18,6 @@ public class HexGrid : MonoBehaviour
         TowerGridCell[] cells = transform.GetComponentsInChildren<TowerGridCell>();
 
         foreach (TowerGridCell cell in cells)
-            cell.CheckForLevel2();
-
-        foreach (TowerGridCell cell in cells)
-            cell.CheckForLevel3();
+            cell.CheckForLevels();
     }
 }

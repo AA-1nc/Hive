@@ -7,6 +7,7 @@ public class TowerInfoMenu : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private TextMeshProUGUI health;
+    [SerializeField] private TextMeshProUGUI sellText;
     [SerializeField] private RectTransform display;
 
     private GameObject infoObject;
@@ -14,6 +15,7 @@ public class TowerInfoMenu : MonoBehaviour
 
     private Health towerHealth;
     private TowerGridCell cell;
+    private int sellCost;
 
     private void Awake()
     {
@@ -40,9 +42,19 @@ public class TowerInfoMenu : MonoBehaviour
     private void UpdateInfo()
     {
         rt.position = RenderTextureUtility.GetRectPositionInRenderTexture(display, Camera.main, infoObject.transform.position);
-        rt.position += new Vector3(rt.sizeDelta.x / 2, rt.sizeDelta.y / 2);
+
+        TowerTypes type = cell.GetTowerType();
+        sellCost = Shop.Instance.GetShopTower(type).sellCost;
 
         health.text = towerHealth.GetDisplay();
-        title.text = $"{cell.GetName()} - Level {cell.Level}";
+        title.text = $"{type.ToString()} - Level {cell.Level}";
+
+        sellText.text = $"Sell - {sellCost} Resin";
+    }
+
+    public void DestroyTower()
+    {
+        CurrencyManager.Instance.ModifyCurrency(sellCost);
+        cell.DestroyTower();
     }
 }

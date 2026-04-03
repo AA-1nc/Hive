@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TurretPlacer : MonoBehaviour
 {
-    [SerializeField] private GameObject towerToSpawn;
+    [SerializeField] private TowerTypes towerType;
     [SerializeField] private LayerMask notPlaceableMask;
     [SerializeField] private float collisionRadius = 0.5f;
     [SerializeField] private Color placeableColor;
@@ -51,7 +51,7 @@ public class TurretPlacer : MonoBehaviour
 
     private void Update()
     {
-        Vector2Int hexCoords = GetHexCoordsFromWorld(RenderTextureUtility.GetWorldPositionInRenderTexture(display, Camera.main));
+        Vector2Int hexCoords = GetHexCoordsFromWorld(RenderTextureUtility.GetMousePosInWorldSpace(display, Camera.main));
         worldPos = GetWorldCoordsFromHex(hexCoords);
         rt.position = RenderTextureUtility.GetRectPositionInRenderTexture(display, Camera.main, worldPos);
 
@@ -65,7 +65,7 @@ public class TurretPlacer : MonoBehaviour
         {
             if (canPlace)
             {
-                Instantiate(towerToSpawn, worldPos, Quaternion.identity, HexGrid.Instance.gridObject.transform);
+                Instantiate(Shop.Instance.GetShopTower(towerType).towerObject, worldPos, Quaternion.identity, HexGrid.Instance.gridObject.transform);
                 currencyManager.ModifyCurrency(-cost);
             }
             gridVisual.SetActive(false);

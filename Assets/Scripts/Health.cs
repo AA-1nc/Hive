@@ -12,6 +12,8 @@ public class Health : MonoBehaviour
     [SerializeField] private UnityEvent OnHealthChange;
     [SerializeField] private UnityEvent OnDie;
     [SerializeField] private GameObject deathParticles;
+    [SerializeField] private SFXObject hurtClip;
+    [SerializeField] private SFXObject deathClip;
 
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Gradient healthGradient;

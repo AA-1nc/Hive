@@ -32,6 +32,10 @@ PrefabInstance:
       propertyPath: towerName
       value: Bomber
       objectReference: {fileID: 0}
+    - target: {fileID: 6009797623160322223, guid: cf3250644fa0a91428f96bd6e133749e, type: 3}
+      propertyPath: towerType
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7269171918654564627, guid: cf3250644fa0a91428f96bd6e133749e, type: 3}
       propertyPath: m_Sprite
       value: 

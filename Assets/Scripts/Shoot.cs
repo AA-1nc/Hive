@@ -9,6 +9,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float cooldown;
     [SerializeField] UnityEvent bulletShot;
     [SerializeField] private float shootDelay = 0;
+    [SerializeField] private SFXObject shootClip;
 
     private bool startedAttack = false;
     private float attackTimer;

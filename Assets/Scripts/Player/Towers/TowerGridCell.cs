@@ -7,12 +7,12 @@ public class TowerGridCell : MonoBehaviour
 {
     public int Level = 1;
 
-    [SerializeField] private string towerName;
+    [SerializeField] private TowerTypes towerType;
     [SerializeField] private GameObject[] towerLevels;
     [SerializeField] private LayerMask towerMask;
     [SerializeField] private float neighborRadius;
 
-    private List<TowerGridCell> neighbors;
+    [SerializeField] private List<TowerGridCell> neighbors;
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class TowerGridCell : MonoBehaviour
     private void CheckNeighbors()
     {
         GetComponent<Collider2D>().enabled = false;
-        Collider2D[] ns = Physics2D.OverlapCircleAll(transform.position, neighborRadius, towerMask);
+        Collider2D[] ns = Physics2D.OverlapCircleAll(transform.position, neighborRadius, towerMask).Where(t => t.GetComponent<TowerGridCell>().GetTowerType() == towerType).ToArray();
         GetComponent<Collider2D>().enabled = true;
 
         foreach (Collider2D n in ns)
@@ -42,30 +42,43 @@ public class TowerGridCell : MonoBehaviour
         HexGrid.Instance.CheckForLevelUps();
     }
 
+    public void DestroyTower()
+    {
+        foreach (TowerGridCell n in neighbors)
+            n.RemoveNeighbor(this);
+
+        HexGrid.Instance.CheckForLevelUps();
+        Destroy(gameObject);
+    }
+
     public void AddNeighbor(TowerGridCell tower)
     {
         neighbors.Add(tower);
     }
 
-    public void CheckForLevel2()
+    public void RemoveNeighbor(TowerGridCell tower)
     {
-        if (Level == 1 && neighbors.Count == 6) ChangeLevel(2);
+        neighbors.Remove(tower);
     }
 
-    public void CheckForLevel3()
+    public void CheckForLevels()
     {
-        if (Level == 2 && neighbors.Where(n => n.Level >= 2).Count() == 2) ChangeLevel(3);
+        if (Level == 1 && neighbors.Count == 6)
+        {
+            Level = 2;
+            towerLevels[0].SetActive(false);
+            towerLevels[1].SetActive(true);
+        }
+        else if (Level == 2 & neighbors.Count < 6)
+        {
+            Level = 1;
+            towerLevels[0].SetActive(true);
+            towerLevels[1].SetActive(false);
+        }
     }
 
-    private void ChangeLevel(int newLevel)
+    public TowerTypes GetTowerType()
     {
-        //towerLevels[Level - 1].SetActive(false);
-        Level = newLevel;
-        //towerLevels[Level - 1].SetActive(true);
-    }
-
-    public string GetName()
-    {
-        return towerName;
+        return towerType;
     }
 }

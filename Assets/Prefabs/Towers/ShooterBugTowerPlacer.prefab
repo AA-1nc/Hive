@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1505015807949791871, guid: cec32f444702e9f45a3abcceff481a9e, type: 3}
+      propertyPath: towerType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505015807949791871, guid: cec32f444702e9f45a3abcceff481a9e, type: 3}
       propertyPath: towerToSpawn
       value: 
       objectReference: {fileID: 9162502909165427420, guid: 2446e11a6b1d1234b9d2a87cf267519d, type: 3}

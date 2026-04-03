@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,7 +9,7 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
-    public static Shop shop;
+    public static Shop Instance;
 
     [SerializeField] private ShopTower[] shopTowers;
     [SerializeField] private float minPlaceLayer;
@@ -27,7 +28,7 @@ public class Shop : MonoBehaviour
 
     private void Awake()
     {
-        shop = this;
+        Instance = this;
     }
 
     private void Start()
@@ -46,15 +47,15 @@ public class Shop : MonoBehaviour
     {
         if (!shopTowers[towerIndex].shopButton.GetComponent<Button>().interactable) return;
 
-        GameObject tower = Instantiate(shopTowers[towerIndex].towerPlacer, dragObjectParent);
-        tower.GetComponent<TurretPlacer>().Initialize(minPlaceLayer, maxPlaceLayer, shopTowers[towerIndex].cost, CurrencyManager.currencyManager);
+        GameObject tower = Instantiate(shopTowers[towerIndex].towerInfo.placerObject, dragObjectParent);
+        tower.GetComponent<TurretPlacer>().Initialize(minPlaceLayer, maxPlaceLayer, shopTowers[towerIndex].towerInfo.cost, CurrencyManager.Instance);
     }
 
     public void UpdateItems(int currency)
     {
         foreach (ShopTower item in shopTowers)
         {
-            bool enabled = item.cost <= currency;
+            bool enabled = item.towerInfo.cost <= currency;
             //item.shopButton.enabled = enabled;
             item.shopButton.GetComponent<Button>().interactable = enabled;
         }
@@ -62,8 +63,8 @@ public class Shop : MonoBehaviour
 
     public void ShowDisplay(int towerIndex)
     {
-        towerNameText.text = shopTowers[towerIndex].towerName;
-        towerPriceText.text = shopTowers[towerIndex].cost + " Resin";
+        towerNameText.text = shopTowers[towerIndex].towerInfo.towerType.ToString();
+        towerPriceText.text = shopTowers[towerIndex].towerInfo.cost + " Resin";
     }
 
     public void HideDisplay()
@@ -71,13 +72,13 @@ public class Shop : MonoBehaviour
         towerNameText.text = "";
         towerPriceText.text = "";
     }
+
+    public TowerInfoObject GetShopTower(TowerTypes tower) => shopTowers.FirstOrDefault(s => s.towerInfo.towerType == tower).towerInfo;
 }
 
 [Serializable]
 public struct ShopTower
 {
     public EventTrigger shopButton;
-    public GameObject towerPlacer;
-    public int cost;
-    public string towerName;
+    public TowerInfoObject towerInfo;
 }

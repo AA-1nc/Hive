@@ -17,12 +17,12 @@ public class PlayerController : MonoBehaviour
     private float currentRadius;
     private float theta = 0;
 
-    private Shoot shoot;
+    private PlayerShoot shoot;
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
-        shoot = GetComponent<Shoot>();
+        shoot = GetComponent<PlayerShoot>();
         currentRadius = movementRadius;
     }
 

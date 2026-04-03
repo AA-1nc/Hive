@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90867895af7592340b0053efa7082677, type: 3}
+  m_Name: Shooter
+  m_EditorClassIdentifier: 
+  towerType: 1
+  cost: 500
+  sellCost: 400
+  placerObject: {fileID: 3438556485124144493, guid: 9f51d815fca8ce44989d233c6b07c39d, type: 3}
+  towerObject: {fileID: 9162502909165427420, guid: 2446e11a6b1d1234b9d2a87cf267519d, type: 3}

@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 3609240744796209200}
   - component: {fileID: 8214631736209190307}
   - component: {fileID: 3035650174452680370}
-  - component: {fileID: -1890803824299162431}
+  - component: {fileID: 5919716464344791383}
   - component: {fileID: -900831022219834622}
   m_Layer: 9
   m_Name: PlayerBullet
@@ -177,7 +177,7 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_SortAtRoot: 0
---- !u!114 &-1890803824299162431
+--- !u!114 &5919716464344791383
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,12 +186,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 5317239254972358312}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1ee1d1407b4d354fa12b5fbaad31b0c, type: 3}
+  m_Script: {fileID: 11500000, guid: 08672ad68cf0ed9459ba7e7311ac7ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
   deletionTime: 3
   expansion: 0.5
+  explosionRadius: 3
+  explosionDamage: 1
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 128
+  explosionVFXPrefab: {fileID: 2584805951510118800, guid: 15988fe870408d64e94fa084bd2f5670, type: 3}
+  clusterProjectile: {fileID: 5317239254972358312, guid: 1c5628eded0f8fd45b3cb323445a09fe, type: 3}
+  clusterCount: 8
 --- !u!114 &-900831022219834622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,6 +213,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  pierce: 1
+  hit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5919716464344791383}
+        m_TargetAssemblyTypeName: PlayerBullet, Assembly-CSharp
+        m_MethodName: SpawnExplosion
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   hitMask:
     serializedVersion: 2
     m_Bits: 128

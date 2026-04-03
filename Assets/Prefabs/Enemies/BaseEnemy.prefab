@@ -174,6 +174,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   deathParticles: {fileID: 3264119294484808255, guid: 14909216226158740be1df75533c7f07, type: 3}
+  hurtClip: {fileID: 11400000, guid: 40741bed6dc287c4785e7e339bbc47b4, type: 2}
+  deathClip: {fileID: 11400000, guid: ca54c85968517f8498efad503394d8d5, type: 2}
   spriteRenderer: {fileID: 0}
   healthGradient:
     serializedVersion: 2

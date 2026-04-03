@@ -8,16 +8,18 @@ public class EnemyLaser : BaseEnemy
     [SerializeField] private float DPS = 4;
     [SerializeField] private GameObject laserObject;
     [SerializeField] private float laserSpeed = 7;
+    [SerializeField] private float laserWidth;
     [SerializeField] private LayerMask damageMask;
 
     [SerializeField] private float targetDistance;
-    [SerializeField]private float laserScale;
+    [SerializeField] private float laserScale;
 
     protected override void Update()
     {
         base.Update();
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, detectionRange, playerMask);
+        //RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, detectionRange, playerMask);
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, new Vector2(laserWidth, 0.01f), transform.rotation.eulerAngles.z, transform.up, detectionRange, playerMask);
         if (hit)
         {
             targetDistance = Mathf.Sqrt(GetSquaredDistance(transform.position, hit.collider.transform.position));

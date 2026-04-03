@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class RenderTextureUtility
 {
-    public static Vector3 GetWorldPositionInRenderTexture(RectTransform displayTransform, Camera cam)
+    public static Vector3 GetMousePosInWorldSpace(RectTransform displayTransform, Camera cam)
     {
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(displayTransform, Input.mousePosition, null, out Vector2 localPos);
+        return GetWorldPositionInRenderTexture(displayTransform, cam, Input.mousePosition);
+    }
+
+    public static Vector3 GetWorldPositionInRenderTexture(RectTransform displayTransform, Camera cam, Vector2 position)
+    {
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(displayTransform, position, null, out Vector2 localPos);
 
         Vector2 uv = Rect.PointToNormalized(displayTransform.rect, localPos);
 

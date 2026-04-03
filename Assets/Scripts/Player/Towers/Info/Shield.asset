@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90867895af7592340b0053efa7082677, type: 3}
+  m_Name: Shield
+  m_EditorClassIdentifier: 
+  towerType: 3
+  cost: 200
+  sellCost: 175
+  placerObject: {fileID: 1222669048568864374, guid: f8098a0d657b4af4eafb1717e2360591, type: 3}
+  towerObject: {fileID: 305513794918193510, guid: d47595a4bfa0e04408f4529ca919ddec, type: 3}

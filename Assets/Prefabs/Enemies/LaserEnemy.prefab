@@ -135,7 +135,7 @@ PrefabInstance:
     - target: {fileID: 2825359449763660595, guid: c4858ec1e25581141b726bc2ba70314d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 184172050, guid: f1eb02079bd95df478ac749e6757de09, type: 3}
+      objectReference: {fileID: 21300000, guid: a120f9fbd62c7454c9dec493f1ed3165, type: 3}
     - target: {fileID: 2825359449763660595, guid: c4858ec1e25581141b726bc2ba70314d, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -280,6 +280,7 @@ MonoBehaviour:
   DPS: 6
   laserObject: {fileID: 1801534131362933522}
   laserSpeed: 40
+  laserWidth: 0.5
   damageMask:
     serializedVersion: 2
     m_Bits: 2368

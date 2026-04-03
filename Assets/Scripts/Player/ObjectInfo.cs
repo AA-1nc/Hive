@@ -15,11 +15,15 @@ public class ObjectInfo : MonoBehaviour
 
     private void Update()
     {
-        worldPosition = RenderTextureUtility.GetWorldPositionInRenderTexture(display, Camera.main);
+        worldPosition = RenderTextureUtility.GetMousePosInWorldSpace(display, Camera.main);
         RaycastHit2D hit = Physics2D.CircleCast(worldPosition, detectionRadius, Vector3.forward, 0, detectionMask);
 
         if (Input.GetMouseButtonDown(0))
         {
+            //If clicking on an info thing, don't hide panel
+            if (activeMenu != -1 && RectTransformUtility.RectangleContainsScreenPoint(infoMenus[activeMenu].GetComponent<RectTransform>(), Input.mousePosition))
+                return;
+
             if (hit.collider == null || hit.collider.gameObject == activeObject)
             {
                 activeObject = null;
@@ -39,7 +43,7 @@ public class ObjectInfo : MonoBehaviour
     // 1 = tower
     private int GetObjectType(GameObject obj)
     {
-        //if (obj.GetComponent<PlayerController>() != null) return 0;
+        if (obj.GetComponent<PlayerController>() != null) return 0;
         if (obj.GetComponent<TowerGridCell>() != null) return 1;
         return -1;
     }

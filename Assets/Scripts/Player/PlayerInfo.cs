@@ -5,12 +5,14 @@ using UnityEngine;
 public class PlayerInfo : MonoBehaviour
 {
     [SerializeField] private GameObject player;
+    [SerializeField] private RectTransform display;
 
     private RectTransform rt;
 
     private void Awake()
     {
         rt = GetComponent<RectTransform>();
+        UpdateInfo();
     }
 
     private void Update()
@@ -20,7 +22,6 @@ public class PlayerInfo : MonoBehaviour
 
     private void UpdateInfo()
     {
-        rt.position = Camera.main.WorldToScreenPoint(player.transform.position);
-        rt.position += new Vector3(rt.sizeDelta.x / 2, rt.sizeDelta.y / 2);
+        
     }
 }

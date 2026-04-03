@@ -55,7 +55,7 @@ public class BaseEnemy : MonoBehaviour
 
     public void AwardCurrency()
     {
-        CurrencyManager.currencyManager.ModifyCurrency(currencyOnDeath);
+        CurrencyManager.Instance.DefeatEnemy(currencyOnDeath);
     }
 
     public float GetContactDamage()
