@@ -12,8 +12,7 @@ public class Health : MonoBehaviour
     [SerializeField] private UnityEvent OnHealthChange;
     [SerializeField] private UnityEvent OnDie;
     [SerializeField] private GameObject deathParticles;
-    [SerializeField] private SFXObject hurtClip;
-    [SerializeField] private SFXObject deathClip;
+    [SerializeField] private AudioClip hurtClip;
 
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Gradient healthGradient;
@@ -21,20 +20,53 @@ public class Health : MonoBehaviour
     [SerializeField] private RectTransform healthbar;
     [SerializeField] private Image healthImage;
 
+    [SerializeField] private float flashTime = 0.1f;
+    [SerializeField] private bool useVignette = false;
+
+    [SerializeField] private SpriteRenderer sp;
+
     private float health;
+    private AudioSource audioSource;
+    private Material hurtMaterial;
+    private Material originalMaterial;
+
+    private Vignette vignette;
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         health = maxHealth;
         OnHealthChange.Invoke();
+        hurtMaterial = Resources.Load<Material>("HurtMaterial");
+
+        if (sp == null)
+            sp = spriteRenderer;
+
+        originalMaterial = sp.material;
+
+        if (useVignette)
+            FindObjectOfType<Volume>().profile.TryGet(out vignette);
+    }
+
+    private void Update()
+    {
+        if (useVignette)
+            vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, 0, Time.deltaTime * 0.1f);
     }
 
     public void TakeDamage(float damage)
     {
         health -= damage;
 
+        if (audioSource != null && hurtClip != null && health > 0)
+            audioSource.PlayOneShot(hurtClip);
+
+        StopAllCoroutines();
+        StartCoroutine(DamageFlashRoutine());
+
         if (health <= 0)
             Die();
+
 
         OnHealthChange.Invoke();
     }
@@ -95,12 +127,19 @@ public class Health : MonoBehaviour
 
     public void UpdateVignette()
     {
-        if (health / maxHealth >= 0.2f) return;
+        if (health / maxHealth >= 0.1f) return;
 
-        Vignette vignette;
-        if (FindObjectOfType<Volume>().profile.TryGet(out vignette))
+        if (useVignette)
         {
             vignette.active = true;
+            vignette.intensity.value = 0.4f;
         }
+    }
+
+    private IEnumerator DamageFlashRoutine()
+    {
+        sp.material = hurtMaterial;
+        yield return new WaitForSeconds(flashTime);
+        sp.material = originalMaterial;
     }
 }

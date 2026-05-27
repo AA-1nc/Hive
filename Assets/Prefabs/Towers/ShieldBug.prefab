@@ -77,6 +77,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6585999645330972441, guid: 707c36155db67634e90f9152e19fd9fb, type: 3}
+      propertyPath: sp
+      value: 
+      objectReference: {fileID: 5266204646948165848}
+    - target: {fileID: 6585999645330972441, guid: 707c36155db67634e90f9152e19fd9fb, type: 3}
       propertyPath: maxHealth
       value: 5
       objectReference: {fileID: 0}
@@ -99,6 +103,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8298165496892219389}
   m_SourcePrefab: {fileID: 100100000, guid: 707c36155db67634e90f9152e19fd9fb, type: 3}
+--- !u!212 &5266204646948165848 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2688420853177523954, guid: 707c36155db67634e90f9152e19fd9fb, type: 3}
+  m_PrefabInstance: {fileID: 7807660364748637738}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9018495702541531477 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1257141682368069503, guid: 707c36155db67634e90f9152e19fd9fb, type: 3}

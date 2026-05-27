@@ -77,6 +77,10 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6585999645330972441, guid: 707c36155db67634e90f9152e19fd9fb, type: 3}
+      propertyPath: sp
+      value: 
+      objectReference: {fileID: 2694051503764730367}
+    - target: {fileID: 6585999645330972441, guid: 707c36155db67634e90f9152e19fd9fb, type: 3}
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
@@ -142,11 +146,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 5317239254972358312, guid: 432b9666b7a0e914a89c3168a3005abd, type: 3}
-  cooldown: 0.15
+  cooldown: 0.25
   bulletShot:
     m_PersistentCalls:
       m_Calls: []
   shootDelay: 0
+  shootClip: {fileID: 0}
 --- !u!114 &-5965465448318875664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,3 +237,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!212 &2694051503764730367 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2688420853177523954, guid: 707c36155db67634e90f9152e19fd9fb, type: 3}
+  m_PrefabInstance: {fileID: 12386084401377037}
+  m_PrefabAsset: {fileID: 0}

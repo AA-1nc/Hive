@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class UpgradeObject : MonoBehaviour
+public class UpgradeObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public string Name;
     [TextArea] public string Description;
     public int Cost;
     public UpgradeTier Tier;
+    public bool Purchased = false;
 
     [SerializeField] private GameObject shopButton;
     [SerializeField] private GameObject draggableUpg;
@@ -21,8 +23,19 @@ public class UpgradeObject : MonoBehaviour
 
     public void Buy()
     {
+        Purchased = true;
         shopButton.SetActive(false);
         draggableUpg.SetActive(true);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        OpenShopMenu();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        shopMenu.CloseShop();
     }
 }
 

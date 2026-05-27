@@ -72,6 +72,7 @@ public class WaveSpawner : MonoBehaviour
             waveText.text = "Wave " + (wave + 1);
             waveDisplay.text = "Wave: " + (wave + 1);
             introAnim.Play();
+            MusicManager.Instance.ChangeTrack(1);
 
             yield return new WaitForSeconds(2);
 
@@ -88,6 +89,8 @@ public class WaveSpawner : MonoBehaviour
 
             canStartWave = false;
             nextWaveButton.SetActive(true);
+            MusicManager.Instance.ChangeTrack(0);
+
             while (!canStartWave)
                 yield return new WaitForSeconds(0.2f);
             nextWaveButton.SetActive(false);
@@ -100,6 +103,7 @@ public class WaveSpawner : MonoBehaviour
             waveText.text = "Wave " + (wave + 1);
             waveDisplay.text = "Wave: " + (wave + 1);
             introAnim.Play();
+            MusicManager.Instance.ChangeTrack(1);
 
             yield return new WaitForSeconds(2);
 
@@ -120,6 +124,8 @@ public class WaveSpawner : MonoBehaviour
 
             canStartWave = false;
             nextWaveButton.SetActive(true);
+            MusicManager.Instance.ChangeTrack(0);
+
             while (!canStartWave)
                 yield return new WaitForSeconds(0.2f);
             nextWaveButton.SetActive(false);

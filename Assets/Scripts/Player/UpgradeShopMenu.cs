@@ -12,22 +12,31 @@ public class UpgradeShopMenu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI priceText;
 
     private UpgradeObject currentUpgrade;
+    private bool hoveringOverTower = false;
 
     public void Initialize(UpgradeObject upgrade)
     {
         currentUpgrade = upgrade;
         nameText.text = currentUpgrade.Name;
         descText.text = currentUpgrade.Description;
-        priceText.text = currentUpgrade.Cost + " Resin";
-        purchaseButton.interactable = currentUpgrade.Cost <= CurrencyManager.Instance.GetCurrency();
+
+        if (currentUpgrade.Purchased)
+            priceText.text = "Purchased";
+        else
+            priceText.text = currentUpgrade.Cost + " Resin";
+
+        purchaseButton.interactable = currentUpgrade.Cost <= CurrencyManager.Instance.GetCurrency() && !currentUpgrade.Purchased;
         GetComponent<RectTransform>().position = currentUpgrade.GetComponent<RectTransform>().position;
+
+        hoveringOverTower = true;
     }
 
     private void Update()
     {
-        if (!Input.GetMouseButtonDown(0)) return;
-        
-        if (!RectTransformUtility.RectangleContainsScreenPoint(GetComponent<RectTransform>(), Input.mousePosition))
+        if (!hoveringOverTower && !RectTransformUtility.RectangleContainsScreenPoint(GetComponent<RectTransform>(), Input.mousePosition))
+            gameObject.SetActive(false);
+
+        if (Input.GetMouseButtonDown(0) && !RectTransformUtility.RectangleContainsScreenPoint(GetComponent<RectTransform>(), Input.mousePosition))
             gameObject.SetActive(false);
     }
 
@@ -35,6 +44,11 @@ public class UpgradeShopMenu : MonoBehaviour
     {
         currentUpgrade.Buy();
         CurrencyManager.Instance.ModifyCurrency(-currentUpgrade.Cost);
-        gameObject.SetActive(false);
+        Initialize(currentUpgrade);
+    }
+
+    public void CloseShop()
+    {
+        hoveringOverTower = false;
     }
 }

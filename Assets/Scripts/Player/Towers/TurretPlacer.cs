@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -55,7 +56,7 @@ public class TurretPlacer : MonoBehaviour
         worldPos = GetWorldCoordsFromHex(hexCoords);
         rt.position = RenderTextureUtility.GetRectPositionInRenderTexture(display, Camera.main, worldPos);
 
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(worldPos, collisionRadius, Vector2.up, 0, notPlaceableMask);
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(worldPos, collisionRadius, Vector2.up, 0, notPlaceableMask).Where(t => t.collider.GetComponent<TowerGridCell>()).ToArray();
 
         float layer = GetHexLayer(hexCoords);
 

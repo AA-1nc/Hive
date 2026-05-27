@@ -6,10 +6,11 @@ public class ObjectInfo : MonoBehaviour
 {
     [SerializeField] private float detectionRadius = 0.1f;
     [SerializeField] private LayerMask detectionMask;
-    [SerializeField] private GameObject[] infoMenus;
+    [SerializeField] private GameObject infoMenu;
     [SerializeField] private RectTransform display;
+    [SerializeField] private GameObject towerOutline;
 
-    private int activeMenu = -1;
+    private bool activeMenu = false;
     private GameObject activeObject = null;
     Vector3 worldPosition;
 
@@ -18,46 +19,44 @@ public class ObjectInfo : MonoBehaviour
         worldPosition = RenderTextureUtility.GetMousePosInWorldSpace(display, Camera.main);
         RaycastHit2D hit = Physics2D.CircleCast(worldPosition, detectionRadius, Vector3.forward, 0, detectionMask);
 
+        bool isObject = hit.collider != null ? GetObjectType(hit.collider.gameObject) : false;
+        towerOutline.SetActive(isObject);
+        if (isObject)
+            towerOutline.transform.position = hit.collider.transform.position;
+
         if (Input.GetMouseButtonDown(0))
         {
             //If clicking on an info thing, don't hide panel
-            if (activeMenu != -1 && RectTransformUtility.RectangleContainsScreenPoint(infoMenus[activeMenu].GetComponent<RectTransform>(), Input.mousePosition))
+            if (activeMenu && RectTransformUtility.RectangleContainsScreenPoint(infoMenu.GetComponent<RectTransform>(), Input.mousePosition))
                 return;
 
             if (hit.collider == null || hit.collider.gameObject == activeObject)
             {
                 activeObject = null;
-                activeMenu = -1;
+                activeMenu = false;
             }
             else
             {
                 activeObject = hit.collider.gameObject;
-                activeMenu = GetObjectType(activeObject);
+                activeMenu = isObject;
             }
 
             ChangeMenu();
         }
     }
 
-    // 0 = player
-    // 1 = tower
-    private int GetObjectType(GameObject obj)
+    private bool GetObjectType(GameObject obj)
     {
-        if (obj.GetComponent<PlayerController>() != null) return 0;
-        if (obj.GetComponent<TowerGridCell>() != null) return 1;
-        return -1;
+        return obj.GetComponent<TowerGridCell>() != null;
     }
 
     private void ChangeMenu()
     {
-        foreach(GameObject menu in infoMenus)
-            menu.SetActive(false);
+        infoMenu.SetActive(false);
 
-        if (activeMenu == -1) return;
+        if (!activeMenu) return;
 
-        infoMenus[activeMenu].SetActive(true);
-
-        if (activeMenu == 1)
-            infoMenus[activeMenu].GetComponent<TowerInfoMenu>().Initialize(activeObject);
+        infoMenu.SetActive(true);
+        infoMenu.GetComponent<TowerInfoMenu>().Initialize(activeObject);
     }
 }

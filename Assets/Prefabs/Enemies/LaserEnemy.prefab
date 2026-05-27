@@ -277,7 +277,7 @@ MonoBehaviour:
   currencyOnDeath: 150
   faceForwardDuringOrbit: 1
   detectionRange: 15
-  DPS: 6
+  DPS: 5
   laserObject: {fileID: 1801534131362933522}
   laserSpeed: 40
   laserWidth: 0.5

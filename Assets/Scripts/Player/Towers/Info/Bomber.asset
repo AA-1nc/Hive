@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerType: 4
   cost: 2000
-  sellCost: 150
+  sellCost: 1500
   placerObject: {fileID: 1516200410564633113, guid: f49ff6fe2a1f41647af527306beb4b06, type: 3}
   towerObject: {fileID: 7586050725003401344, guid: 3c49cb6fe7c6a7344958c4fcb54ca775, type: 3}

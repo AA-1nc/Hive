@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healingRadius: 4
-  healingAmount: 2
+  healingAmount: 3
   moveSpeed: 5
   detectionDelay: 0.2
   towerMask:

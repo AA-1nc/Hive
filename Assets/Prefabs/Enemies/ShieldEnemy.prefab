@@ -179,7 +179,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   deathParticles: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  hurtClip: {fileID: 0}
+  spriteRenderer: {fileID: 2854194945255989042}
   healthGradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -212,6 +213,9 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthbar: {fileID: 0}
   healthImage: {fileID: 0}
+  flashTime: 0.1
+  useVignette: 0
+  sp: {fileID: 0}
 --- !u!1 &4904210069206125328
 GameObject:
   m_ObjectHideFlags: 0

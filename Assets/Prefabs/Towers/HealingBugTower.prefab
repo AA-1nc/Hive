@@ -20,6 +20,14 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 24
       objectReference: {fileID: 0}
+    - target: {fileID: 4122634050011378831, guid: cf3250644fa0a91428f96bd6e133749e, type: 3}
+      propertyPath: bugPrefab
+      value: 
+      objectReference: {fileID: 1792393118639014315, guid: 1c435cbfbb630ed429130082ac3b7914, type: 3}
+    - target: {fileID: 4122634050011378831, guid: cf3250644fa0a91428f96bd6e133749e, type: 3}
+      propertyPath: spawnTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6009797623160322223, guid: cf3250644fa0a91428f96bd6e133749e, type: 3}
       propertyPath: towerName
       value: Healer
@@ -28,6 +36,14 @@ PrefabInstance:
       propertyPath: towerType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6009797623160322223, guid: cf3250644fa0a91428f96bd6e133749e, type: 3}
+      propertyPath: towerSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: -1808705395, guid: cfc0c75bcd2b135489c8134a2f2e5a68, type: 3}
+    - target: {fileID: 6009797623160322223, guid: cf3250644fa0a91428f96bd6e133749e, type: 3}
+      propertyPath: towerSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: ccb851a06e8b95b4fb7f07b5678de960, type: 3}
     - target: {fileID: 7269171918654564627, guid: cf3250644fa0a91428f96bd6e133749e, type: 3}
       propertyPath: m_Sprite
       value: 

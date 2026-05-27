@@ -34,7 +34,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8585912296439624413}
+  - {fileID: 7354247832455419019}
   - {fileID: 4729072446808306628}
+  - {fileID: 8684744190321045856}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &5609977415605900839
@@ -122,13 +124,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Level: 1
-  towerName: Melee
+  towerType: 0
   towerLevels:
   - {fileID: 8691106842656004709}
+  - {fileID: 4443129023010336765}
+  towerSprites:
+  - {fileID: 130814509, guid: cfc0c75bcd2b135489c8134a2f2e5a68, type: 3}
+  - {fileID: 21300000, guid: 66d03dbd7ec4d8346b510323f1919843, type: 3}
+  sp: {fileID: 7269171918654564627}
   towerMask:
     serializedVersion: 2
     m_Bits: 256
   neighborRadius: 0.75
+  neighbors: []
 --- !u!114 &2665498405626340144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,6 +169,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   deathParticles: {fileID: 0}
+  hurtClip: {fileID: 0}
   spriteRenderer: {fileID: 665088577726858157}
   healthGradient:
     serializedVersion: 2
@@ -194,6 +203,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthbar: {fileID: 0}
   healthImage: {fileID: 0}
+  flashTime: 0.2
+  sp: {fileID: 7269171918654564627}
 --- !u!1 &2692916298266202123
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +319,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4729072446808306628}
+  m_Father: {fileID: 8962173085137763537}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7269171918654564627
 SpriteRenderer:
@@ -362,6 +373,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &4443129023010336765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8684744190321045856}
+  - component: {fileID: 4122634050011378831}
+  m_Layer: 8
+  m_Name: Level2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &8684744190321045856
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4443129023010336765}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8962173085137763537}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4122634050011378831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4443129023010336765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfc7d0959e904774bafdad5235bb2112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bugPrefab: {fileID: 658473305329908531, guid: 90b70d06508c53c4a905d64614f248e0, type: 3}
+  spawnTime: 1.67
+  maxBugs: 4
+  spawnRadius: 0.5
 --- !u!1 &8691106842656004709
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,8 +450,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7354247832455419019}
+  m_Children: []
   m_Father: {fileID: 8962173085137763537}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1135058046999880868

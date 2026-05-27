@@ -28,6 +28,18 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 4122634050011378831, guid: cf3250644fa0a91428f96bd6e133749e, type: 3}
+      propertyPath: maxBugs
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122634050011378831, guid: cf3250644fa0a91428f96bd6e133749e, type: 3}
+      propertyPath: bugPrefab
+      value: 
+      objectReference: {fileID: 1251511031768043634, guid: c225d983e1438eb4483fe255050fba91, type: 3}
+    - target: {fileID: 4122634050011378831, guid: cf3250644fa0a91428f96bd6e133749e, type: 3}
+      propertyPath: spawnTime
+      value: 1.25
+      objectReference: {fileID: 0}
     - target: {fileID: 6009797623160322223, guid: cf3250644fa0a91428f96bd6e133749e, type: 3}
       propertyPath: towerName
       value: Ranged
@@ -36,6 +48,14 @@ PrefabInstance:
       propertyPath: towerType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6009797623160322223, guid: cf3250644fa0a91428f96bd6e133749e, type: 3}
+      propertyPath: towerSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 1227115819, guid: cfc0c75bcd2b135489c8134a2f2e5a68, type: 3}
+    - target: {fileID: 6009797623160322223, guid: cf3250644fa0a91428f96bd6e133749e, type: 3}
+      propertyPath: towerSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: c54ff70613a148c438b06424213d23f9, type: 3}
     - target: {fileID: 7269171918654564627, guid: cf3250644fa0a91428f96bd6e133749e, type: 3}
       propertyPath: m_Sprite
       value: 

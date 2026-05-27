@@ -44,7 +44,9 @@ public class PlayerBullet : MonoBehaviour
 
         AddStatBoost(AttackUpgradeType.triple, ref expansion);
 
-        AddStatBoost(AttackUpgradeType.piercing, ref GetComponent<Hurtbox>().pierce);
+        AttackUpgradeInfo info = activeUpgrades[AttackUpgradeType.piercing];
+        if (info.Active)
+            GetComponent<Hurtbox>().pierce += (int)info.Percentage;
     }
 
     private void AddStatBoost(AttackUpgradeType type, ref float stat)
@@ -52,13 +54,6 @@ public class PlayerBullet : MonoBehaviour
         AttackUpgradeInfo info = activeUpgrades[type];
         if (info.Active)
             stat *= info.Percentage;
-    }
-
-    private void AddStatBoost(AttackUpgradeType type, ref int stat)
-    {
-        AttackUpgradeInfo info = activeUpgrades[type];
-        if (info.Active)
-            stat *= (int)info.Percentage;
     }
 
     public void SpawnExplosion()

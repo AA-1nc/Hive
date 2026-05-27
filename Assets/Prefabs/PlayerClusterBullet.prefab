@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  deletionTime: 0.2
+  deletionTime: 1
   expansion: 0.2
   explosionRadius: 2
   explosionDamage: 1
@@ -198,6 +198,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   explosionVFXPrefab: {fileID: 2584805951510118800, guid: 15988fe870408d64e94fa084bd2f5670, type: 3}
+  clusterProjectile: {fileID: 0}
+  clusterCount: 0
 --- !u!114 &-900831022219834622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0.5
-  pierce: 1
+  pierce: 2
   hit:
     m_PersistentCalls:
       m_Calls:

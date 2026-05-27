@@ -9,6 +9,8 @@ public class TowerGridCell : MonoBehaviour
 
     [SerializeField] private TowerTypes towerType;
     [SerializeField] private GameObject[] towerLevels;
+    [SerializeField] private Sprite[] towerSprites;
+    [SerializeField] private SpriteRenderer sp;
     [SerializeField] private LayerMask towerMask;
     [SerializeField] private float neighborRadius;
 
@@ -27,7 +29,7 @@ public class TowerGridCell : MonoBehaviour
     private void CheckNeighbors()
     {
         GetComponent<Collider2D>().enabled = false;
-        Collider2D[] ns = Physics2D.OverlapCircleAll(transform.position, neighborRadius, towerMask).Where(t => t.GetComponent<TowerGridCell>().GetTowerType() == towerType).ToArray();
+        Collider2D[] ns = Physics2D.OverlapCircleAll(transform.position, neighborRadius, towerMask).Where(t => t.GetComponent<TowerGridCell>() != null && t.GetComponent<TowerGridCell>().GetTowerType() == towerType).ToArray();
         GetComponent<Collider2D>().enabled = true;
 
         foreach (Collider2D n in ns)
@@ -54,11 +56,13 @@ public class TowerGridCell : MonoBehaviour
     public void AddNeighbor(TowerGridCell tower)
     {
         neighbors.Add(tower);
+        CheckForLevels();
     }
 
     public void RemoveNeighbor(TowerGridCell tower)
     {
         neighbors.Remove(tower);
+        CheckForLevels();
     }
 
     public void CheckForLevels()
@@ -68,17 +72,25 @@ public class TowerGridCell : MonoBehaviour
             Level = 2;
             towerLevels[0].SetActive(false);
             towerLevels[1].SetActive(true);
+            sp.sprite = towerSprites[1];
         }
         else if (Level == 2 & neighbors.Count < 6)
         {
             Level = 1;
             towerLevels[0].SetActive(true);
             towerLevels[1].SetActive(false);
+            sp.sprite = towerSprites[0];
         }
     }
 
     public TowerTypes GetTowerType()
     {
         return towerType;
+    }
+
+    private void OnDestroy()
+    {
+        foreach (TowerGridCell t in neighbors)
+            t.RemoveNeighbor(this);
     }
 }

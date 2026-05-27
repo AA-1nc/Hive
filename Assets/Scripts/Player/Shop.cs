@@ -20,9 +20,6 @@ public class Shop : MonoBehaviour
     [SerializeField] private Vector3 hiddenShopPos;
     [SerializeField] private float lerpSpeed;
 
-    [SerializeField] private TextMeshProUGUI towerNameText;
-    [SerializeField] private TextMeshProUGUI towerPriceText;
-
     private bool shopOpen = false;
     private Vector3 shopOpenPos;
 
@@ -59,18 +56,6 @@ public class Shop : MonoBehaviour
             //item.shopButton.enabled = enabled;
             item.shopButton.GetComponent<Button>().interactable = enabled;
         }
-    }
-
-    public void ShowDisplay(int towerIndex)
-    {
-        towerNameText.text = shopTowers[towerIndex].towerInfo.towerType.ToString();
-        towerPriceText.text = shopTowers[towerIndex].towerInfo.cost + " Resin";
-    }
-
-    public void HideDisplay()
-    {
-        towerNameText.text = "";
-        towerPriceText.text = "";
     }
 
     public TowerInfoObject GetShopTower(TowerTypes tower) => shopTowers.FirstOrDefault(s => s.towerInfo.towerType == tower).towerInfo;
